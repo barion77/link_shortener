@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_URI'] != '/') {
             border-bottom: 1px solid #333;
             outline: none;
             margin-top: 10px;
+            width: 350px;
         }
 
         .btn {

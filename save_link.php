@@ -9,7 +9,7 @@ $urls = explode("\r\n", $urls);
 
 foreach ($urls as $key => $value) {
     if (!empty($value)) {
-        if ($link == explode('@', $value)[1]) {
+        if ($link == 'http://' . $_SERVER['HTTP_HOST'] . '/' . explode('@', $value)[1]) {
             echo '<b>Hits: </b>' . explode('@', $value)[2];
             exit;
         }
