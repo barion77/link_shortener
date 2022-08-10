@@ -16,7 +16,7 @@ foreach ($urls as $key => $value) {
     }
 }
 
-$record = $link . "@" . $hash . "\r\n";
+$record = $link . "@" . $hash . '@' . '0' . "\r\n";
 file_put_contents('urls.txt', $record, FILE_APPEND);
 
 echo '<b>Your link: </b>' . 'http://' . $_SERVER['HTTP_HOST'] . '/' . $hash;
