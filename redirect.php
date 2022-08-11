@@ -10,7 +10,6 @@ foreach ($urls as $key => $value) {
     if (!empty($value)) {
         $url = explode('@', $value)[0];
         $hash = explode('@', $value)[1];
-        $count = explode('@', $value[2]);
 
         if ($hash == $request) {
             $count = intval(explode('@', $value)[2]) + 1;

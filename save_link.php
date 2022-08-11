@@ -1,7 +1,7 @@
 <?php
 
 $link = $_GET['link'];
-$hash = md5($link);
+$hash = substr(md5($link), 0, 12);
 
 
 $urls = file_get_contents('urls.txt');
