@@ -1,22 +1,19 @@
 <?php
 
 $link = $_GET['link'];
-$hash = substr(md5($link), 0, 12);
+$hash = substr(md5($link), 0, 6);
 
+$urls = file_get_contents('urls.json');
+$urls = json_decode($urls, true);
 
-$urls = file_get_contents('urls.txt');
-$urls = explode("\r\n", $urls);
-
-foreach ($urls as $key => $value) {
-    if (!empty($value)) {
-        if ($link == 'http://' . $_SERVER['HTTP_HOST'] . '/' . explode('@', $value)[1]) {
-            echo '<b>Hits: </b>' . explode('@', $value)[2];
-            exit;
-        }
+if (!empty($urls)) {
+    if (isset($urls[$hash])) {
+        echo '<b>Link: http://' . $_SERVER['HTTP_HOST'] . '/' . $hash . '<br/>' . 'Hits: </b>' . $urls[$hash]['hits'];
+        exit;
     }
 }
 
-$record = $link . "@" . $hash . '@' . '0' . "\r\n";
-file_put_contents('urls.txt', $record, FILE_APPEND);
+$urls[$hash] = ['url' => $link, 'hits' => 0];
+file_put_contents('urls.json', json_encode($urls));
 
-echo '<b>Your link: </b>' . 'http://' . $_SERVER['HTTP_HOST'] . '/' . $hash;
+echo '<b>Your link:</b> http://' . $_SERVER['HTTP_HOST'] . '/' . $hash;

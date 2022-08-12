@@ -3,25 +3,20 @@
 
 $request = trim($_SERVER['REQUEST_URI'], '/');
 
-$urls = file_get_contents('urls.txt');
-$urls = explode("\r\n", $urls);
+$urls = file_get_contents('urls.json');
+$urls = json_decode($urls, true);
 
-foreach ($urls as $key => $value) {
-    if (!empty($value)) {
-        $url = explode('@', $value)[0];
-        $hash = explode('@', $value)[1];
+if (!empty($urls)) {
+    if (isset($urls[$request])) {
+        $url = $urls[$request]['url'];
+        $count = $urls[$request]['hits'];
 
-        if ($hash == $request) {
-            $count = intval(explode('@', $value)[2]) + 1;
-            $record = $url . '@' . $hash . '@' . $count;
-            $urls[$key] = $record;
-            $urls = implode(',', $urls);
-            $urls = str_replace(',', "\r\n", $urls);
-            file_put_contents('urls.txt', $urls);
+        $urls[$request]['hits'] = $count + 1;
+        file_put_contents('urls.json', json_encode($urls));
 
-            header('Location: ' . $url);
-        }
-    }
+        header('Location: ' . $url);
+    }    
 }
+
 
 die('404 Not Found');
