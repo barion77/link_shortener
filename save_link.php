@@ -8,7 +8,8 @@ $urls = json_decode($urls, true);
 
 if (!empty($urls)) {
     if (isset($urls[$hash])) {
-        echo '<b>Link: http://' . $_SERVER['HTTP_HOST'] . '/' . $hash . '<br/>' . 'Hits: </b>' . $urls[$hash]['hits'];
+        echo '<b>Link: </b>' . 'http://' . $_SERVER['HTTP_HOST'] . '/' . $hash . 
+        '</br>' . '<b>Hits: </b>' . $urls[$hash]['hits'];
         exit;
     }
 }
