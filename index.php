@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_URI'] != '/') {
             border-bottom: 1px solid #333;
             outline: none;
             margin-top: 10px;
-            width: 350px;
+            width: 250px;
         }
 
         .btn {
@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_URI'] != '/') {
             border-radius: 5px;
             margin-top: 10px;
         }
+
     </style>
 
 </head>
@@ -54,7 +55,7 @@ if ($_SERVER['REQUEST_URI'] != '/') {
 
     <div class="main">
         <div class="result">
-
+            
         </div>
         <input type="text" class="link" name="link" placeholder="Link...">
         <input type="submit" class="btn" value="Submit">
